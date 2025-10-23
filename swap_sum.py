@@ -30,8 +30,6 @@ def swap_sum(A, B):
     return None
 
 
-# In[ ]:
-
 
 
 
