@@ -11,7 +11,7 @@ def swap_sum(A, B):
 
     if diff % 2 != 0:
         return None
-    delta = diff // 2  # 目標是找 b - a == delta
+    delta = diff // 2 
 
     i = 0
     j = 0
