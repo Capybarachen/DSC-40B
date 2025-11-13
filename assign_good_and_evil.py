@@ -7,7 +7,7 @@
 def assign_good_and_evil(graph):
     labels = {}
 
-    for start in graph.nodes():
+    for start in graph.nodes:
         if start in labels:
             continue
 
