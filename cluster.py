@@ -8,7 +8,7 @@ def cluster(graph, weights, level):
     visited_nodes = set()
     all_clusters = []
 
-    for start_node in graph.nodes():
+    for start_node in graph.nodes:
         if start_node in visited_nodes:
             continue
 
