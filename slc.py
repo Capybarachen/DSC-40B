@@ -117,7 +117,7 @@ def slc(graph, d, k):
     dsf = DisjointSetForest(nodes)
     edges_with_weights = []
     
-    for (u, v) in graph.edges():
+    for (u, v) in graph.edges:
         w = d((u, v))
         edges_with_weights.append((w, u, v))
 
