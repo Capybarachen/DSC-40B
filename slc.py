@@ -113,7 +113,7 @@ class _DisjointSetForestCore:
 
 def slc(graph, d, k):
 
-    nodes = list(graph.nodes())
+    nodes = list(graph.nodes)
     dsf = DisjointSetForest(nodes)
     edges_with_weights = []
     
