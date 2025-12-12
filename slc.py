@@ -112,25 +112,23 @@ class _DisjointSetForestCore:
                 self._rank[y_rep] += 1
 
 def slc(graph, d, k):
-
     nodes = list(graph.nodes)
     dsf = DisjointSetForest(nodes)
-    edges_with_weights = []
-    
-    for (u, v) in graph.edges:
-        w = d((u, v))
-        edges_with_weights.append((w, u, v))
 
-    edges_with_weights.sort(key=lambda x: x[0])
+    edges_with_weights = []
+    for (u, v) in graph.edges:
+        edges_with_weights.append((d((u, v)), u, v))
+
+    edges_with_weights.sort()
 
     num_clusters = len(nodes)
-
-    for w, u, v in edges_with_weights:
-        if num_clusters <= k:
-            break
-        if not dsf.in_same_set(u, v):
+    i = 0
+    while i < len(edges_with_weights) and num_clusters > k:
+        w, u, v = edges_with_weights[i]
+        if dsf.in_same_set(u, v) == False:
             dsf.union(u, v)
-            num_clusters -= 1
+            num_clusters = num_clusters - 1
+        i = i + 1
 
     rep_to_members = {}
     for node in nodes:
@@ -139,11 +137,10 @@ def slc(graph, d, k):
             rep_to_members[rep] = set()
         rep_to_members[rep].add(node)
 
-    cluster_list = []
-    
-    for members in rep_to_members.values():
-        cluster_list.append(frozenset(members))
-    clusters = frozenset(cluster_list)
-    
-    return clusters                
+    out = []
+    for rep in rep_to_members:
+        out.append(frozenset(rep_to_members[rep]))
+
+    return frozenset(out)
+               
 
